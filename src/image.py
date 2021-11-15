@@ -100,6 +100,8 @@ class Image:
     #==============================================================================
     def resize(self, new_H, new_W):
         
+        #On choisi H et W comme étant les nouvelles dimensions voulues.
+        #Il sera pertinent de prendre les memes dimensions que l'image "témoin" afin de comparer l'image test avec cette derniere.
         im_resized = Image()
         im_resized.pixels = resize(self.pixels, (new_H,new_W), 0)
         im_resized.pixels = np.uint8(im_resized.pixels*255)
