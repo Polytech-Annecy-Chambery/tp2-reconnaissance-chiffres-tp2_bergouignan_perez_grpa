@@ -48,19 +48,18 @@ class Image:
     #==============================================================================
     def binarisation(self, S):
         
-        im_modif = image()
-        im_modif.set_pixels(np.zeros((self.H,self.W), dtype=np.uint8))
+        im_binar = Image()
+        im_binar.set_pixels(np.zeros((self.H,self.W), dtype=np.uint8))
                                                 
         # boucle imbriquées
         for l in range(self.H):
             for c in range(self.W):
                 # modif des pixels d'intensite <= à S
                 if self.pixels[l][c] <= S:
-                    im_modif.pixels[l][c] = 0 #le pixel devient noir
+                    im_binar.pixels[l][c] = 0 #le pixel devient noir
                 else :
-                    im_modif.pixels[l][c] = 255 #le pixel devient blanc
-        return im_modif 
-
+                    im_binar.pixels[l][c] = 255 #le pixel devient blanc
+        return im_binar
 
     #==============================================================================
     # Dans une image binaire contenant une forme noire sur un fond blanc
