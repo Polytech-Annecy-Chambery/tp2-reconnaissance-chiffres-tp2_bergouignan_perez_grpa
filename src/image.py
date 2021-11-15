@@ -69,28 +69,30 @@ class Image:
     #   self : l'image binaire que l'on veut recadrer
     #   on retourne une nouvelle image recadree
     #==============================================================================
-    def localisation(self):
-        # preparaton du resultat : creation d'une image vide 
-        im_loc = image()
+  def localisation(self):
         
-        #création des variables qui sont les bornes de l'image recadrée
-        Li,Lf,Ci,Cf=self.H,0,self.W,0
-                                                              
-        # boucle imbriquees pour parcourir tous les pixels de l'image
+        im_loc = Image()
+        
+        
+        l_min = self.H - 1
+        l_max = 0
+        c_min  = self.W - 1
+        c_max = 0
+        
         for l in range(self.H):
             for c in range(self.W):
-                if self.pixels[l][c] == 0:
-                    if Li>l:
-                        Li=l
-                    if Lf<l:
-                        Lf=l
-                    if Ci>c:
-                        Ci=c
-                    if Cf<c:
-                        Cf=c
-        im_modif.set_pixels(self.pixels[Li:Lf+1,Ci:Cf+1])
+                if self.pixels[l][c] == 0: 
+                    if l < l_min:
+                        l_min = l
+                    if l > l_max:
+                        l_max = l
+                    if c < c_min:
+                       c_min =c
+                    if c > c_max:
+                        c_max = c
+        im_loc.set_pixels(self.pixels[l_min:l_max,c_min:c_max])
         return im_loc
-
+                
     #==============================================================================
     # Methode de redimensionnement d'image
     #==============================================================================
