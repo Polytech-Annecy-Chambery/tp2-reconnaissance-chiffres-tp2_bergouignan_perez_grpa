@@ -47,7 +47,19 @@ class Image:
     #   on retourne une nouvelle image binarisee
     #==============================================================================
     def binarisation(self, S):
-        pass
+        
+        im_modif = image()
+        im_modif.set_pixels(np.zeros((self.H,self.W), dtype=np.uint8))
+                                                
+        # boucle imbriquées
+        for l in range(self.H):
+            for c in range(self.W):
+                # modif des pixels d'intensite <= à S
+                if self.pixels[l][c] <= S:
+                    im_modif.pixels[l][c] = 0 #le pixel devient noir
+                else :
+                    im_modif.pixels[l][c] = 255 #le pixel devient blanc
+        return im_modif 
 
 
     #==============================================================================
@@ -59,13 +71,38 @@ class Image:
     #   on retourne une nouvelle image recadree
     #==============================================================================
     def localisation(self):
-        pass
+        # preparaton du resultat : creation d'une image vide 
+        im_modif = image()
+        
+        #création des variables qui sont les bornes de l'image recadrée
+        Li,Lf,Ci,Cf=self.H,0,self.W,0
+                                                              
+        # boucle imbriquees pour parcourir tous les pixels de l'image
+        for l in range(self.H):
+            for c in range(self.W):
+                if self.pixels[l][c] == 0:
+                    if Li>l:
+                        Li=l
+                    if Lf<l:
+                        Lf=l
+                    if Ci>c:
+                        Ci=c
+                    if Cf<c:
+                        Cf=c
+        im_modif.set_pixels(self.pixels[Li:Lf+1,Ci:Cf+1])
+        return im_modif 
 
     #==============================================================================
     # Methode de redimensionnement d'image
     #==============================================================================
     def resize(self, new_H, new_W):
-        pass
+        # preparaton du resultat : creation d'une image vide 
+        im_modif = image()
+        #utilisation de la fonction resize
+        im_modif.pixels = resize(self.pixels, (new_H,new_W), 0)
+        #modifiaction pour adaptation au format
+        im_modif.pixels = np.uint8(im_modif.pixels*255)
+        return im_modif
 
 
     #==============================================================================
