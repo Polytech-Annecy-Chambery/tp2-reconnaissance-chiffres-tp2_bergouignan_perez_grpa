@@ -70,18 +70,20 @@ class Image:
     #   on retourne une nouvelle image recadree
     #==============================================================================
   def localisation(self):
-        
+        #Creation de l'image
         im_loc = Image()
         
-        
+        #On défini les coordonnées maximum et minimum de la forme noire
+        #Le but étant de trouver le premier et le dernier pixel noir dans le sens de la hauteur et dans le sens de la longueur
         l_min = self.H - 1
         l_max = 0
         c_min  = self.W - 1
         c_max = 0
         
+        #Double boucle for pour parcourir l'image
         for l in range(self.H):
             for c in range(self.W):
-                if self.pixels[l][c] == 0: 
+                if self.pixels[l][c] == 0: #La condition est remplie si le pixel est noir
                     if l < l_min:
                         l_min = l
                     if l > l_max:
