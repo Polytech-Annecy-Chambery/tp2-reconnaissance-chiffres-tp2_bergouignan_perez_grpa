@@ -99,13 +99,12 @@ class Image:
     # Methode de redimensionnement d'image
     #==============================================================================
     def resize(self, new_H, new_W):
-        # preparaton du resultat : creation d'une image vide 
-        im_modif = image()
-        #utilisation de la fonction resize
-        im_modif.pixels = resize(self.pixels, (new_H,new_W), 0)
-        #modifiaction pour adaptation au format
-        im_modif.pixels = np.uint8(im_modif.pixels*255)
-        return im_modif
+        
+        im_resized = Image()
+        im_resized.pixels = resize(self.pixels, (new_H,new_W), 0)
+        im_resized.pixels = np.uint8(im_resized.pixels*255)
+        
+        return im_resized
 
 
     #==============================================================================
