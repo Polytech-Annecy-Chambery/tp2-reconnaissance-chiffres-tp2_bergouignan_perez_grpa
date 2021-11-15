@@ -71,7 +71,7 @@ class Image:
     #==============================================================================
     def localisation(self):
         # preparaton du resultat : creation d'une image vide 
-        im_modif = image()
+        im_loc = image()
         
         #création des variables qui sont les bornes de l'image recadrée
         Li,Lf,Ci,Cf=self.H,0,self.W,0
@@ -89,7 +89,7 @@ class Image:
                     if Cf<c:
                         Cf=c
         im_modif.set_pixels(self.pixels[Li:Lf+1,Ci:Cf+1])
-        return im_modif 
+        return im_loc
 
     #==============================================================================
     # Methode de redimensionnement d'image
